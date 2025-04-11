@@ -1,0 +1,19 @@
+{
+  "name": "jenkins-ci-demo",
+  "version": "1.0.0",
+  "description": "A sample Node.js app for Jenkins CI/CD demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Running tests...\" && exit 0"
+  },
+  "author": "Vijay Pagare",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0",
+    "supertest": "^7.1.0"
+  }
+}

@@ -1,0 +1,28 @@
+# Ignore system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore node_modules
+node_modules/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore OS files
+.Trash/
+ehthumbs.db
+Thumbs.db
+
+# Ignore package files
+package-lock.json
+yarn.lock
+
+# Ignore temp files
+*.tmp
+*.bak
