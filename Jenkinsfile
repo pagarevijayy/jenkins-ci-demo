@@ -1,6 +1,11 @@
 pipeline {
     agent any  // Define which node to run the pipeline on
 
+    environment {
+        NODE_ENV = 'production'
+        DEPLOY_USER = 'jenkins'
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -15,9 +20,23 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+
+        stage('Deploy to Staging') {
+            when {
+                branch 'staging'
+            }
             steps {
-                echo 'Deploying the app...'
+                echo 'Deploying to Staging Environment...'
+                sh 'mkdir -p staging && cp -r * staging/'
+            }
+        }
+
+        stage('Deploy to Production') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Deploying to Production Environment...'
                 sh 'mkdir -p production && cp -r * production/'
             }
         }
@@ -25,7 +44,7 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
+            echo "Pipeline completed successfully on branch: ${env.BRANCH_NAME}"
         }
         failure {
             echo 'Pipeline failed! Please check the logs.'
