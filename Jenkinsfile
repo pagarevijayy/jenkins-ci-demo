@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any  // Define which node to run the pipeline on
 
     stages {
         stage('Build') {
@@ -14,32 +14,12 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Deploy to Staging') {
+
+        stage('Deploy') {
             steps {
-                echo 'Deploying to Staging Environment...'
-                sh 'mkdir -p staging && cp -r * staging/'
-            }
-        }
-        stage('Approval') {
-            steps {
-                input message: 'Deploy to Production?'
-            }
-        }
-        stage('Deploy to Production') {
-            steps {
-                echo 'Deploying to Production Environment...'
+                echo 'Deploying the app...'
                 sh 'mkdir -p production && cp -r * production/'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed! Please check the logs.'
-            echo 'Sending notification...'
         }
     }
 }
