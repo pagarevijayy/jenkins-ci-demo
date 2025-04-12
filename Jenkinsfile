@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'export PATH=$PATH:/opt/homebrew/bin && npm install'
+                sh 'export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin/node && npm install'
             }
         }
         stage('Test') {
